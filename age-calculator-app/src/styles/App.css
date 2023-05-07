@@ -1,42 +1,92 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+	--spacing-base: 8px;
+	--spacing: calc(var(--spacing-base) * 2);
+	--spacing-lg: calc(var(--spacing-base) * 2.5);
+	--spacing-xl: calc(var(--spacing-base) * 3);
+
+
+	--color-primary: hsl(259, 100%, 65%);
+	--color-alert: hsl(0, 100%, 67%);
+	--color-white: hsl(0, 0%, 100%);
+	--color-off-white: hsl(0, 0%, 94%);
+	--color-light-grey: hsl(0, 0%, 86%);
+	--color-smokey-grey: hsl(0, 1%, 44%);
+	--color-off-black: hsl(0, 0%, 8%);
+
+	--corners: 12px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.countdown-calculator {
+  align-self: center;
+  margin-block: auto;
+  padding: var(--spacing-xl);
+  background-color: var(--color-white);
+  
+  border-radius: var(--corners);
+  border-bottom-right-radius: 50%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* FORM */
+.countdown-calculator__form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.form_inputs-wrapper {
+	display: flex;
+	gap: var(--spacing);
 }
 
-.card {
-  padding: 2em;
+
+.form_group {
+	display: flex;
+	flex-direction: column;
 }
 
-.read-the-docs {
-  color: #888;
-}
+.form_group label{
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	font-weight: bold;
+ }
+
+ .form_submission-wrapper {
+	display: flex;
+	place-items: center;
+ }
+
+ .form_submission-wrapper hr{
+	--size: 1px;
+	
+	min-height: var(--size);
+	min-width: var(--size);
+
+	flex-grow: 1;
+	border: unset;
+
+	background-color:var(--color-light-grey);
+ }
+
+ .form_submission-wrapper button{
+	--size: 56px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: var(--size);
+	height: var(--size);
+
+	background-color: var(--color-primary);
+	border-radius: 999px;
+
+	border: unset;
+ }
+
+ .form_submission-wrapper button .icon{
+	aspect-ratio: 1/1;
+
+	width: 50%;
+	height: 50%;
+ }

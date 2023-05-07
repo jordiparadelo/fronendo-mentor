@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<style>
+			@font-face {
+				font-family: "Poppins";
+				font-style: normal;
+				font-weight: 400;
+				font-display: swap;
+				src: local("Poppins-Regular"),
+					url("./src/assets/fonts/Poppins-Regular.ttf") format("truetype");
+			}
+			@font-face {
+				font-family: "Poppins";
+				font-style: normal;
+				font-weight: 700;
+				font-display: swap;
+				src: local("Poppins-Bolditalic"), url("/src/assets/fonts/Poppins-Bolditalic.ttf") format("truetype");
+			}
+			@font-face {
+				font-family: "Poppins";
+				font-style: normal;
+				font-weight: 700;
+				font-display: swap;
+				src: local("Poppins-Bold"), url("/src/assets/fonts/Poppins-Bold.ttf") format("truetype");
+			}
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-    <title>Frontend Mentor | Age calculator app</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+			body {
+				font-family: "Poppins";
+			}
+		</style>
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./assets/images/favicon-32x32.png"
+		/>
+		<title>Frontend Mentor | Age calculator app</title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script
+			type="module"
+			src="/src/main.jsx"
+		></script>
+	</body>
 </html>
