@@ -58,7 +58,7 @@ function App() {
 						<input
 							type='number'
 							id='year'
-							min='0'
+							min='100'
 							max={maxYear}
 						/>
 					</div>
