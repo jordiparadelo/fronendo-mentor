@@ -1,10 +1,46 @@
 import "./styles/App.css";
 import { useDateReducer } from "./hooks/useDates";
+import { useDateInput } from "./hooks/useDateInput";
 import { getDuration, getFormData } from "./utils";
 import { IconArrow } from "./assets/images/IconArrow";
+import { useReducer } from "react";
+
+const initialErrorState = {
+	day: {
+		invalid: false,
+		type: "",
+		message: "Invalid date",
+	},
+
+	month: {
+		invalid: false,
+		type: "",
+		message: "Invalid date",
+	},
+
+	year: {
+		invalid: false,
+		type: "",
+		message: "Invalid date",
+	},
+};
 
 function App() {
 	const { days, months, years, updateDates } = useDateReducer();
+	const { day, month, year, updateInputValue } = useDateInput();
+	const { error, setError } = useReducer((state, nextState) => {
+		return { ...state, ...nextState };
+	}, initialErrorState);
+
+	function validateInput(input) {
+		const { value, id } = input;
+
+		const INPUT_TYPE_VALIDATION = {
+			day: () => {
+				setError({ message: "Invalid date" });
+			},
+		};
+	}
 
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -26,46 +62,84 @@ function App() {
 		});
 	}
 
-	const maxYear = new Date().getFullYear();
+	function handleInputError({ id, type }) {
+		const ERROR_TYPE = {
+			minNum: "Value must be a under 0",
+			maxNum: "Value must be a under 0",
+		};
+
+		ERROR_TYPE[type];
+	}
+
+	function handleOnBlur(event) {
+		const { value, id, type } = event.target;
+		validateInput(value);
+
+		// value === "" && updateInputValue({id, value: initialInputValue[id]})
+	}
+	function handleOnChange(event) {
+		const { value, id } = event.target;
+
+		const isValidInput = value.match(/^-?\d+$/) || value.match(/^$/);
+
+		isValidInput && updateInputValue({ id, value });
+	}
 
 	return (
-		<dvi className='countdown-calculator'>
+		<div className='countdown-calculator'>
 			<form
 				onSubmit={handleSubmit}
 				className='countdown-calculator__form'
 			>
-				<div className='form_inputs-wrapper'>
-					<div className='form_group'>
+				<div className='form__inputs-wrapper'>
+					<div className='form__group'>
 						<label htmlFor='day'>Day</label>
 						<input
-							type='number'
+							type='text'
+							placeholder='DD'
 							id='day'
-							min='1'
-							max='30'
+							onChange={handleOnChange}
+							onBlur={handleOnBlur}
+							value={day}
+							required
 						/>
+						{/* {console.log({state})} */}
+						{/* {error.day.valid && (
+							<span className='form__error-message'>
+								{error["day"].invalid.message}
+							</span>
+						)} */}
 					</div>
-					<div className='form_group'>
+					<div className='form__group'>
 						<label htmlFor='month'>Month</label>
 						<input
-							type='number'
+							type='text'
+							value={month}
+							placeholder='MM'
 							id='month'
-							min='1'
-							max='12'
+							onChange={handleOnChange}
+							required
 						/>
+						{/* {error['month'] && <span className='form__error-message'>{errorMessage}</span>} */}
 					</div>
-					<div className='form_group'>
+					<div className='form__group'>
 						<label htmlFor='year'>Year</label>
 						<input
-							type='number'
+							type='text'
+							value={year}
+							placeholder='YYYY'
 							id='year'
-							min='100'
-							max={maxYear}
+							onChange={handleOnChange}
+							required
 						/>
+						{/* {error['year'] && <span className='form__error-message'>{errorMessage}</span>} */}
 					</div>
 				</div>
-				<div className='form_submission-wrapper'>
+				<div className='form__submission-wrapper'>
 					<hr />
-					<button aria-label="submit"><IconArrow className="icon"/></button>
+					<button aria-label='submit'>
+						<IconArrow className='icon' />
+					</button>
 				</div>
 			</form>
 			<ul className='year-output'>
@@ -82,7 +156,7 @@ function App() {
 					<span className='year-output__label'>days</span>
 				</li>
 			</ul>
-		</dvi>
+		</div>
 	);
 }
 

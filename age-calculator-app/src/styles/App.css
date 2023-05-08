@@ -38,28 +38,28 @@
 	gap: var(--spacing);
 }
 
-.form_inputs-wrapper {
+.form__inputs-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: var(--spacing);
 }
 
 @media screen and (min-width: 375px) {
-	.form_inputs-wrapper {
+	.form__inputs-wrapper {
 		display: grid;
 		gap: var(--spacing);
 		grid-template-columns: repeat(auto-fill, minmax(max(80px, 20%), 1fr));
 	}
 }
 
-.form_group {
+.form__group {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
 	gap: 4px;
 }
 
-.form_group label {
+.form__group label {
 	font-size: 12px;
 	text-transform: uppercase;
 	letter-spacing: 0.2em;
@@ -67,7 +67,7 @@
 	color: var(--color-smokey-grey);
 }
 
-.form_group input {
+.form__group input {
 	--size: 40px;
 	--border-color: var(--color-light-grey);
 
@@ -81,20 +81,26 @@
 	font-weight: bold;
 }
 
-.form_group input:is(:hover) {
+.form__group input:is(:hover) {
 	--border-color: var(--color-primary);
 }
-.form_group input:is(:focus, :active) {
+.form__group input:is(:focus, :active) {
 	--border-color: var(--color-primary);
 	outline: 4px solid var(--color-light-primary);
 }
 
-.form_submission-wrapper {
+.form__error-message {
+	font-size: 12px;
+	font-style: italic;
+	color: var(--color-alert)
+}
+
+.form__submission-wrapper {
 	display: flex;
 	place-items: center;
 }
 
-.form_submission-wrapper hr {
+.form__submission-wrapper hr {
 	--size: 1px;
 
 	min-height: var(--size);
@@ -106,7 +112,7 @@
 	background-color: var(--color-light-grey);
 }
 
-.form_submission-wrapper button {
+.form__submission-wrapper button {
 	--size: 56px;
 	--background-color: var(--color-primary);
 
@@ -124,11 +130,11 @@
 	cursor: pointer;
 }
 
-.form_submission-wrapper button:is(:hover) {
+.form__submission-wrapper button:is(:hover) {
 	--background-color: var(--color-off-black);
 }
 
-.form_submission-wrapper button .icon {
+.form__submission-wrapper button .icon {
 	aspect-ratio: 1/1;
 
 	width: 50%;
