@@ -3,7 +3,7 @@ import { useDateReducer } from "./hooks/useDates";
 import { useDateInput } from "./hooks/useDateInput";
 import { getDuration, getFormData } from "./utils";
 import { IconArrow } from "./assets/images/IconArrow";
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 const initialErrorState = {
 	day: {
@@ -27,10 +27,21 @@ const initialErrorState = {
 
 function App() {
 	const { days, months, years, updateDates } = useDateReducer();
+	const [percentage, setPercentage] = useState(null);
 	const { day, month, year, updateInputValue } = useDateInput();
 	const { error, setError } = useReducer((state, nextState) => {
 		return { ...state, ...nextState };
 	}, initialErrorState);
+
+	useEffect(() => {
+		let totalDays = days + months * 30;
+
+		const newPercentage = Math.round((100 * totalDays) / 365);
+
+		console.log({ newPercentage, totalDays });
+
+		setPercentage(newPercentage);
+	}, [days]);
 
 	function validateInput(input) {
 		const { value, id } = input;
@@ -155,6 +166,21 @@ function App() {
 					<span className='year-output__value'>{days}</span>
 					<span className='year-output__label'>days</span>
 				</li>
+				{percentage ? (
+					<li>
+						<span className='year-output__next-year'>
+						<span style={{fontSize: '14px', width: '100%'}}>Remaining Time for next year:</span>
+							<span>{percentage}%</span>
+							<div className='loader'>
+								<span
+									className='loader__bar'
+									style={{ "--percentage": `${percentage}%` }}
+								></span>
+							</div>
+							{years + 1}
+						</span>
+					</li>
+				) : null}
 			</ul>
 		</div>
 	);

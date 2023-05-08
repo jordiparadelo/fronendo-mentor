@@ -160,3 +160,36 @@
 	color: var(--color-primary);
 	margin-inline-end: 0.2em;
 }
+
+.year-output__next-year {
+	font-size: 0.5em;
+    display: flex;
+    align-items: center;
+    row-gap: var(--spacing-base);
+    column-gap: var(--spacing);
+    line-height: 1;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-lg);
+}
+
+.year-output__next-year .loader {
+	--size: 0.5em;
+	
+	min-width: var(--size);
+	height: var(--size);
+	
+	border-radius: 999px;
+	display: flex;
+	padding: 2px;
+	background-color: var(--color-off-white);
+	flex-grow: 1;
+}
+
+.year-output__next-year .loader__bar {
+	--percentage: 20%;
+	height: 100%;
+	width: var(--percentage);
+	border-radius: inherit;
+	background-color: var(--color-primary);
+	transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}

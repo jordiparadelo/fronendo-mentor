@@ -7,8 +7,8 @@ const initialState = {
 };
 
 const DATE_ACTION_TYPES = {
-    UPDATE_DATES: "UPDATE_DATES"
-}
+	UPDATE_DATES: "UPDATE_DATES",
+};
 
 function reducer(state, action) {
 	switch (action.type) {
@@ -27,11 +27,12 @@ export function useDateReducer() {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const { days, months, years } = state;
 
-	const updateDates = (dates) =>
+	const updateDates = (dates) => {
 		dispatch({
 			type: "UPDATE_DATES",
 			payload: dates,
 		});
+	};
 
 	return { days, months, years, updateDates };
 }
