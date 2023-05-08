@@ -169,7 +169,7 @@ function App() {
 				{percentage ? (
 					<li>
 						<span className='year-output__next-year'>
-						<span style={{fontSize: '14px', width: '100%'}}>Remaining Time for next year:</span>
+						<span style={{fontSize: '14px', width: '100%'}}>Remaining for your next birthday:</span>
 							<span>{percentage}%</span>
 							<div className='loader'>
 								<span
